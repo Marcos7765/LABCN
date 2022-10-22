@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def jacobi(A, x, b, maxIter, prec):
     '''Método iterativo de Jacobi para a matriz de coeficientes A, o vetor 
@@ -155,3 +156,16 @@ def exemploLU():
     res = decompLU(A)
     print("L:\n",res[0])
     print("U:\n",res[1])
+
+def rgb2gray(rgb):
+    '''Função para obter a imagem cinza, com ruído'''
+   rgb = rgb.astype(float); #converte pra float
+   return (rgb[:,:,0]+rgb[:,:,1]+rgb[:,:,2])*1/3
+
+img = plt.imread('foto.jpg')
+imggray = rgb2gray(img)
+    '''Para tirar o ruído, remova as linhas 168 e 169'''
+t = imggray.shape
+imgruido = imggray + np.random.rand(t[0],t[1])
+plt.imshow(imggray, cmap="gray")
+plt.show()
